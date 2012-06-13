@@ -1,7 +1,7 @@
 {
-  "name": "Ruby China插件",
+  "name": "Ruby China 插件",
   "version": "1.0",
-  "description": "Ruby China插件",
+  "description": "Ruby China 插件",
   "homepage_url": "http://ruby-china.org/users/qichunren",
   "background_page": "background.html",
   "options_page": "option.html",
