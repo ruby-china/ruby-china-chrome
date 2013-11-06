@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     function fillContent(data){
+        console.log(data);
         $("#topicItem").tmpl(data).appendTo("#topics");
         jQuery("abbr.timeago").timeago();
     }
@@ -19,5 +20,4 @@ $(document).ready(function(){
         chrome.browserAction.setBadgeText({'text' : ""});
         chrome.tabs.create({'url' : 'http://ruby-china.org/notifications'});
     });
-
 });

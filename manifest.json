@@ -1,9 +1,10 @@
 {
   "name": "Ruby China 插件",
   "version": "1.0",
+  "manifest_version": 2,
   "description": "Ruby China 插件",
   "homepage_url": "http://ruby-china.org/users/qichunren",
-  "background_page": "background.html",
+  "background": { "page": "background.html" },
   "options_page": "option.html",
   "icons": {
       "16" : "images/logo-16.png",
