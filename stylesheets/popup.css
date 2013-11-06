@@ -38,6 +38,12 @@ width: 56px;
 margin-left: 10px;
 }
 
+.topics .topic:after {
+    display: table;
+    content: ' ';
+    clear: both;
+}
+
 .pull-left {
 float: left;
 }
