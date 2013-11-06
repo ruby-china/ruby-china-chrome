@@ -1,23 +1,22 @@
-$(document).ready(function(){
+var rubyChinaApp = angular.module('rubyChinaApp', []);
 
-    function fillContent(data){
-        console.log(data);
-        $("#topicItem").tmpl(data).appendTo("#topics");
-        jQuery("abbr.timeago").timeago();
+rubyChinaApp.filter('timeago', function() {
+    return function(input) {
+        console.log(input);
+        return $.timeago(input);
     }
+});
 
-    $.ajax({
-          url: "http://ruby-china.org/api/topics.json",
-          type: "GET",
-          dataType: "json",
-          success: function(data) {
-            fillContent(data);
-            $("#loading").hide();
-          }
-        });
-
-    $("#notify").click(function(){
-        chrome.browserAction.setBadgeText({'text' : ""});
-        chrome.tabs.create({'url' : 'http://ruby-china.org/notifications'});
+rubyChinaApp.controller('TopicListCtrl', function TopicListCtrl($scope, $http) {
+    $http.get('http://ruby-china.org/api/topics.json').success(function(data) {
+        console.log(JSON.stringify(data[1]));
+        $scope.topics = data;
+        $('#loading').hide();
+        jQuery("abbr.timeago").timeago();
     });
+});
+
+$("#notify").click(function() {
+    chrome.browserAction.setBadgeText({'text' : ""});
+    chrome.tabs.create({'url' : 'http://ruby-china.org/notifications'});
 });
