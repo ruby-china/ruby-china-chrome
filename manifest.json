@@ -21,7 +21,7 @@
     {
       "matches": ["http://ruby-china.org/*"],
       "css": ["lib/jquery.powertip.min.css"],
-      "js": ["javascripts/jquery-1.7.1.min.js", "lib/jquery.powertip.min.js", "javascripts/contentscript.js"]
+      "js": ["javascripts/jquery-2.0.3.min.js", "javascripts/contentscript.js"]
     }
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
