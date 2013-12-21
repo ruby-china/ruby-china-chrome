@@ -20,6 +20,7 @@
   "content_scripts": [
     {
       "matches": ["http://ruby-china.org/*"],
+      "css": ["stylesheets/contentstyle.css"],
       "js": ["javascripts/jquery-2.0.3.min.js", "javascripts/contentscript.js"]
     }
   ],

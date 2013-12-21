@@ -1,0 +1,10 @@
+.well.rcc-popover {
+    position: absolute;;
+    z-index: 2147483647;
+    background: #333333;
+    color: #eaeaea;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 3px 6px;
+    margin: 0;
+}
