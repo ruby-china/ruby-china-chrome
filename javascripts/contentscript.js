@@ -31,12 +31,18 @@ $(function() {
         nameTimer = null;
     }
 
+    function renderRecentTopicsByUser(user) {
+        var html = [];
+        $.each(user.topics || [], function(i, topic) {
+            html.push(fmt('<li>[#{node_name}] #{title}</li>', topic));
+        });
+        return fmt('<ul>#{1}</ul>', html.join(''));
+    }
+
     function showUserCard(link, user) {
         clearNamePopover();
-
-        // TODO: 浮层中显示最近的话题
         var content = fmt('ID: #{login}<br/>城市：#{location}<br/>签名：#{tagline}', user);
-        var namePopover = $(fmt(namePopoverTpl, content));
+        var namePopover = $(fmt(namePopoverTpl, content + renderRecentTopicsByUser(user)));
         var target = link.find('img');
         if (!target.size()) {
             target = link;
