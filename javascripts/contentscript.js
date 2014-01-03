@@ -12,6 +12,10 @@ function fmt() {
     });
 }
 
+function addFullScreenButton() {
+    $('.editor_toolbar .icons').append('<a href="#" class="icon"><i class="icon icon-fullscreen"></i></a>');
+}
+
 $(function() {
     var nameTimer = null,
     nameRequest = null,
@@ -63,4 +67,6 @@ $(function() {
         }, 1000);
     });
     $(document).on('mouseout', nameSelectors, clearNamePopover);
+
+    addFullScreenButton();
 });
