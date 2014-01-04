@@ -39,6 +39,19 @@
     display: none;
 }
 
+.box-fullscreen .topic_editor,
+.box-fullscreen #preview {
+    height: auto !important;
+    width: auto !important;
+    position: absolute;
+    right: 5px;
+    left: 5px;
+    bottom: 5px;
+    top: 35px;
+    font-size: 2em;
+    line-height: 1.5em;
+}
+
 .box-fullscreen .editor_toolbar {
-    width: auto;
+    width: auto !important;
 }

@@ -20,6 +20,14 @@ function addToolbarButton(name, title, hide) {
     $('.editor_toolbar .icons').append(fmt(TPLS.BTN, name, title, hide));
 }
 
+function toggleTwipsy($box, flag) {
+    if (flag) {
+        $box.find('[rel=twipsy]').attr('data-original-title', function() { return $(this).attr('data-title'); });
+    } else {
+        $box.find('[rel=twipsy]').attr('data-title', function() { return $(this).attr('data-original-title'); }).attr('data-original-title', null);
+    }
+}
+
 function extendToolbar() {
     console.log('Loading extra toolbar buttons...');
     addToolbarButton('fullscreen', '全屏编辑', '');
@@ -30,7 +38,9 @@ function extendToolbar() {
         $box.addClass('box-fullscreen').find('.control-group:first').hide();
         $(this).hide();
         $box.find('.resize-small').show();
-        $(body).css('overflow', 'hidden');
+        toggleTwipsy($box, false);
+        $('body').css('overflow', 'hidden');
+        document.documentElement.webkitRequestFullScreen();
         return false;
     }); 
 
@@ -39,7 +49,9 @@ function extendToolbar() {
         $box.removeClass('box-fullscreen').find('.control-group:first').show();
         $(this).hide();
         $box.find('.fullscreen').show();
-        $(body).css('overflow', 'auto');
+        toggleTwipsy($box, true);
+        $('body').css('overflow', 'auto');
+        document.webkitExitFullscreen();
         return false;
     }); 
 }
