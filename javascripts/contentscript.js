@@ -1,3 +1,7 @@
+var TPLS = {
+    BTN: '<a href="javascript:;" class="rcc-btn #{1} #{3}" title="#{2}"><i class="icon icon-#{1}"></i></a>'
+};
+
 function fmt() {
     var args = arguments;
     return args[0].replace(/#\{(.*?)\}/g, function(match, prop) {
@@ -12,8 +16,32 @@ function fmt() {
     });
 }
 
-function addFullScreenButton() {
-    $('.editor_toolbar .icons').append('<a href="#" class="icon"><i class="icon icon-fullscreen"></i></a>');
+function addToolbarButton(name, title, hide) {
+    $('.editor_toolbar .icons').append(fmt(TPLS.BTN, name, title, hide));
+}
+
+function extendToolbar() {
+    console.log('Loading extra toolbar buttons...');
+    addToolbarButton('fullscreen', '全屏编辑', '');
+    addToolbarButton('resize-small', '退出全屏', 'hide');
+
+    $('.fullscreen').on('click', function(evt) {
+        $box = $(this).parents('.box');
+        $box.addClass('box-fullscreen').find('.control-group:first').hide();
+        $(this).hide();
+        $box.find('.resize-small').show();
+        $(body).css('overflow', 'hidden');
+        return false;
+    }); 
+
+    $('.resize-small').on('click', function(evt) {
+        $box = $(this).parents('.box');
+        $box.removeClass('box-fullscreen').find('.control-group:first').show();
+        $(this).hide();
+        $box.find('.fullscreen').show();
+        $(body).css('overflow', 'auto');
+        return false;
+    }); 
 }
 
 $(function() {
@@ -67,6 +95,6 @@ $(function() {
         }, 1000);
     });
     $(document).on('mouseout', nameSelectors, clearNamePopover);
-
-    addFullScreenButton();
+    $(document).on('page:load', extendToolbar); // Turborlink 刷新时加载
+    extendToolbar(); // 页面刷新时加载
 });

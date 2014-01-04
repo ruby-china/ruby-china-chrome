@@ -13,7 +13,32 @@
     margin: 5px 0 0 0;
 }
 
+.rcc-btn {
+    opacity: 0.4;
+}
+
 .icon-fullscreen {
     background-position: -456px -144px !important;
-    opacity: 0.4;
+}
+
+.box-fullscreen {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.box-fullscreen .submit_buttons,
+.box-fullscreen .helpblock,
+.box-fullscreen form .control-group:last-child {
+    display: none;
+}
+
+.box-fullscreen .editor_toolbar {
+    width: auto;
 }
