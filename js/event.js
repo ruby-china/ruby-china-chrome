@@ -1,6 +1,7 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
 
 });
+
 var fetching = false;
 var unread_count = 0;
 function fetchNotify(){
