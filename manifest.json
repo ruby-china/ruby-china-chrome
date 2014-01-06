@@ -1,9 +1,9 @@
 {
-  "name": "Ruby China 插件",
+  "name": "Ruby China for Chrome",
   "version": "1.1",
   "manifest_version": 2,
-  "description": "Ruby China 插件",
-  "homepage_url": "http://ruby-china.org/users/qichunren",
+  "description": "RubyChina for Chrome 是对 http://ruby-china.org 进行增强的 Google Chrome 扩展。",
+  "homepage_url": "https://github.com/GDG-Xian/ruby-china-chrome/",
   "background": { "page": "background.html" },
   "options_page": "option.html",
   "icons": {
