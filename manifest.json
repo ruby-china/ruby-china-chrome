@@ -27,5 +27,5 @@
     }
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": ["tabs","http://ruby-china.org/*", "http://epiceditor.com/*" ]
+  "permissions": ["tabs", "alarms", "http://ruby-china.org/*"]
 }
