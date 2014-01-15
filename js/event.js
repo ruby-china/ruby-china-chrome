@@ -1,22 +1,30 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.create({ url: 'http://ruby-china.org/notifications', active: false }); 
+    if (localStorage['unread_notification_count']) {
+        chrome.tabs.create({ url: 'http://ruby-china.org/notifications' }); 
+        localStorage['unread_notification_count'] = '';
+    } else {
+        chrome.tabs.create({ url: 'http://ruby-china.org/' }); 
+    }
+
     updateUnreadCount();
 });
 
 function updateUnreadCount() {
     chrome.browserAction.setBadgeText({ text: localStorage['unread_notification_count'] || '' });
-    localStorage['unread_notification_count'] = '';
 }
 
-function checkNewNotifications() {
+function checkNewNotifications(alarmInfo) {
+    console.log('Checking ruby china notifications...');
     $.get('http://ruby-china.org/wiki/about', function(content) {
         var unread_count = parseInt($(content).find("#user_notifications_count .badge").text());
+        console.log('Fetched ' + unread_count + ' notifications');
         localStorage['unread_notification_count'] = unread_count || '';
+        updateUnreadCount();
     });
 }
 
-// TODO: 查阅资料，确定 alarms 创建的最合适的时机
-chrome.alarms.clearAll();
-// FIXME: 提醒时间先写死，后面再调整
-chrome.alarms.create('check new notifications', { periodInMinutes: 3 });
+chrome.runtime.onInstalled.addListener(function() {
+    chrome.alarms.create('notifications', { periodInMinutes: 3 });
+});
+
 chrome.alarms.onAlarm.addListener(checkNewNotifications);
