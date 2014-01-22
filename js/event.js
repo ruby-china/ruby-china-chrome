@@ -23,8 +23,15 @@ function checkNewNotifications(alarmInfo) {
     });
 }
 
-chrome.runtime.onInstalled.addListener(function() {
+function createNotificationAlarms() {
     chrome.alarms.create('notifications', { periodInMinutes: 3 });
-});
+}
 
+// Event Bindings
+chrome.runtime.onInstalled.addListener(createNotificationAlarms);
 chrome.alarms.onAlarm.addListener(checkNewNotifications);
+chrome.storage.onChanged.addListener(function() {
+    if ('options.update_duration' in changes)
+        createNotificationAlarms();
+    }
+});
