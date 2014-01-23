@@ -13,7 +13,7 @@ function updateUnreadCount() {
     chrome.browserAction.setBadgeText({ text: localStorage['unread_notification_count'] || '' });
 }
 
-function checkNewNotifications(alarmInfo) {
+function checkNewNotifications() {
     console.log('Checking ruby china notifications...');
     $.get('http://ruby-china.org/wiki/about', function(content) {
         var unread_count = parseInt($(content).find("#user_notifications_count .badge").text());
@@ -27,13 +27,17 @@ function createNotificationAlarms() {
     // 默认的通知读取间隔为3分钟
     chrome.storage.sync.get({ 'option.fetch_duration': 3 }, function(items) {
         chrome.alarms.create('notifications', { periodInMinutes: items['option.fetch_duration'] });
-        console.log('Alarm notification created with period in ' + items['option.fetch_duration'] + ' minutes.');
+        console.log('Alarm notifications created with period in ' + items['option.fetch_duration'] + ' minutes.');
     });
 }
 
 // Event Bindings
 chrome.runtime.onInstalled.addListener(createNotificationAlarms);
-chrome.alarms.onAlarm.addListener(checkNewNotifications);
+chrome.alarms.onAlarm.addListener(function(alarmInfo) {
+    if (alarmInfo.name === 'notifications') {
+        checkNewNotifications();
+    }
+});
 chrome.storage.onChanged.addListener(function(changes) {
     if ('option.fetch_duration' in changes) {
         createNotificationAlarms();
