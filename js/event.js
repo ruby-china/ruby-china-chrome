@@ -24,14 +24,18 @@ function checkNewNotifications(alarmInfo) {
 }
 
 function createNotificationAlarms() {
-    chrome.alarms.create('notifications', { periodInMinutes: 3 });
+    // 默认的通知读取间隔为3分钟
+    chrome.storage.sync.get({ 'option.fetch_duration': 3 }, function(items) {
+        chrome.alarms.create('notifications', { periodInMinutes: items['option.fetch_duration'] });
+        console.log('Alarm notification created with period in ' + items['option.fetch_duration'] + ' minutes.');
+    });
 }
 
 // Event Bindings
 chrome.runtime.onInstalled.addListener(createNotificationAlarms);
 chrome.alarms.onAlarm.addListener(checkNewNotifications);
-chrome.storage.onChanged.addListener(function() {
-    if ('options.update_duration' in changes)
+chrome.storage.onChanged.addListener(function(changes) {
+    if ('option.fetch_duration' in changes) {
         createNotificationAlarms();
     }
 });
