@@ -92,7 +92,7 @@ $(function() {
             target = link;
         }
         namePopover.css({ top: target.offset().top + target.height(), left: target.offset().left });
-        namePopover.appendTo('body').fadeIn();;
+        namePopover.appendTo('body').fadeIn();
     }
 
     $(document).on('mouseover', nameSelectors, function(evt) {
