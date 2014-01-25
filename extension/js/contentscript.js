@@ -40,7 +40,7 @@ function extendToolbar() {
         $box.find('.resize-small').show();
         toggleTwipsy($box, false);
         $('body').css('overflow', 'hidden');
-        document.documentElement.webkitRequestFullScreen();
+        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
         return false;
     }); 
 
