@@ -31,7 +31,14 @@ function createNotificationAlarms() {
     });
 }
 
+function initialization() {
+    createNotificationAlarms();
+    // 启动后立即检测
+    checkNewNotifications();
+}
+
 // Event Bindings
+chrome.runtime.onStartup.addListener(createNotificationAlarms);
 chrome.runtime.onInstalled.addListener(createNotificationAlarms);
 chrome.alarms.onAlarm.addListener(function(alarmInfo) {
     if (alarmInfo.name === 'notifications') {
