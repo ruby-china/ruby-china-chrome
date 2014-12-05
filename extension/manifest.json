@@ -5,7 +5,12 @@
   "description": "RubyChina for Chrome 是对 http://ruby-china.org 进行增强的 Google Chrome 扩展。",
   "homepage_url": "https://github.com/GDG-Xian/ruby-china-chrome/",
   "background": {
-      "scripts": ["js/jquery-2.0.3.min.js", "js/event.js"],
+      "scripts": [
+        "assets/javascripts/underscore.js",
+        "assets/javascripts/jquery-2.0.3.js",
+        "assets/javascripts/application.js",
+        "assets/javascripts/event.js"
+      ],
       "persistent": false
   },
   "options_page": "option.html",
@@ -22,14 +27,14 @@
   "content_scripts": [
     {
       "matches": ["*://ruby-china.org/*"],
-      "css": ["css/contentstyle.css"],
       "js": [
-        "js/jquery-2.0.3.min.js",
-        "js/application.js",
-        "modules/hide_deleted_replies/contentscript.js"
+        "assets/javascripts/underscore.js",
+        "assets/javascripts/jquery-2.0.3.js",
+        "assets/javascripts/application.js",
+        "assets/javascripts/contentscript.js"
       ]
     }
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "permissions": ["tabs", "alarms", "storage", "http://ruby-china.org/*"]
+  "permissions": ["tabs", "alarms", "storage", "*://ruby-china.org/*"]
 }

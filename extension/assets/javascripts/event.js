@@ -1,3 +1,12 @@
+function load_modules_handler(request, sender, response) {
+    log('I got it, haha.');
+    response();
+}
+
+register_message_dispatcher({
+    load_modules: load_modules_handler
+});
+
 chrome.browserAction.onClicked.addListener(function(tab) {
     if (localStorage['unread_notification_count']) {
         chrome.tabs.create({ url: 'http://ruby-china.org/notifications' }); 
