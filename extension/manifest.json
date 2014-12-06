@@ -6,6 +6,7 @@
   "homepage_url": "https://github.com/GDG-Xian/ruby-china-chrome/",
   "background": {
       "scripts": [
+        "modules/modules.js",
         "assets/javascripts/underscore.js",
         "assets/javascripts/jquery-2.0.3.js",
         "assets/javascripts/application.js",

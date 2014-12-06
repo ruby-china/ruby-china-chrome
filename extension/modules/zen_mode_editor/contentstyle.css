@@ -1,0 +1,160 @@
+a[data-toggle=zen-mode]:before {
+    color: #4A8BF5;
+    content: '-> 进入全屏模式';
+}
+
+body.zen-mode-editor {
+    overflow: hidden;
+}
+
+body.zen-mode-editor a[data-toggle=zen-mode]:before {
+    color: #4A8BF5;
+    content: '<- 退出全屏模式';
+}
+
+body.zen-mode-editor #main {
+    position: absolute;
+}
+
+body.zen-mode-editor #reply {
+    color: #C0C5CE;
+    position: fixed;
+    z-index: 10000;
+    background-color: #2B303B;
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+body.zen-mode-editor #reply.form .editor-toolbar {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+body.zen-mode-editor .editor-toolbar .pills a {
+    border: none;
+    font-size: 18px;
+    color: #C0C5CE;
+}
+
+body.zen-mode-editor .editor-toolbar .pills .active a {
+    color: #2B303B;
+}
+
+body.zen-mode-editor #reply form {
+    height: 80%;
+    overflow: auto;
+}
+
+body.zen-mode-editor #reply.form textarea,
+body.zen-mode-editor #reply.form #preview {
+    background-color: #2B303B;
+    border: 0 !important;
+    display: block;
+    min-width: 800px !important;
+    margin: 30px auto;
+    height: 80% !important;
+    font-size: 24px;
+    line-height: 1.5;
+    vertical-align: middle;
+    resize: none;
+    color: #525353;
+}
+
+body.zen-mode-editor #reply.form #preview h4 {
+    font-size: 1.1em;
+}
+
+body.zen-mode-editor #reply.form #preview p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+body.zen-mode-editor .markdown-body ul li,
+body.zen-mode-editor .markdown-body ol li {
+    font-size: 1em;
+    line-height: 1.2;
+    color: #525353;
+}
+
+body.zen-mode-editor #reply.form textarea:focus {
+    border-color: transparent;
+    box-shadow: none;
+    outline: 0;
+}
+
+body.zen-mode-editor #reply .submit-buttons {
+    position: static;
+    text-align: center;
+}
+
+body.zen-mode-editor #reply .submit-buttons .help-inline {
+    display: none;    
+}
+
+body.zen-mode-editor #reply .helpblock {
+    display: none;
+}
+
+
+.well.rcc-popover {
+    position: absolute;;
+    z-index: 2147483647;
+    background: #333333;
+    color: #eaeaea;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 3px 6px;
+    margin: 0;
+}
+
+.well.rcc-popover ul {
+    margin: 5px 0 0 0;
+}
+
+.rcc-btn {
+    opacity: 0.4;
+}
+
+.icon-fullscreen {
+    background-position: -456px -144px !important;
+}
+
+.box-fullscreen {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.box-fullscreen .submit_buttons,
+.box-fullscreen .helpblock,
+.box-fullscreen form .control-group:last-child {
+    display: none;
+}
+
+.box-fullscreen .topic_editor,
+.box-fullscreen #preview {
+    height: auto !important;
+    width: auto !important;
+    position: absolute;
+    right: 5px;
+    left: 5px;
+    bottom: 5px;
+    top: 35px;
+    font-size: 2em;
+    line-height: 1.5em;
+}
+
+.box-fullscreen .editor_toolbar {
+    width: auto !important;
+}

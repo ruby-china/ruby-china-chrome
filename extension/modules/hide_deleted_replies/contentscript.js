@@ -1,5 +1,5 @@
 (function($) {
-  log('Module `hide_deleted_replies` loaded:');
+  log('Module actived: hide_deleted_replies');
 
   function hideDeletedReplies() {
     $('.reply .deleted').each(function() {
