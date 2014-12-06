@@ -13,7 +13,7 @@
       ],
       "persistent": false
   },
-  "options_page": "option.html",
+  "options_page": "options.html",
   "icons": {
       "16" : "images/logo-16.png",
       "48" : "images/logo-48.png",
