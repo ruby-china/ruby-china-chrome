@@ -3,26 +3,29 @@ a[data-toggle=zen-mode]:before {
     content: '进入全屏模式 »';
 }
 
-body.zen-mode-editor {
+body.zen-mode {
     overflow: hidden;
 }
 
-body.zen-mode-editor a[data-toggle=zen-mode]:before {
+body.zen-mode a[data-toggle=zen-mode]:before {
     color: #4A8BF5;
     content: '« 退出全屏模式';
 }
 
-body.zen-mode-editor #main {
+body.zen-mode #main {
     position: absolute;
     overflow: hidden;
 }
 
-body.zen-mode-editor #reply {
+
+body.zen-mode #reply.form,
+body.zen-mode form.zen-mode:not(.new_reply) {
     color: #C0C5CE;
-    position: fixed;
+    position: fixed !important;
     z-index: 10000;
     background-color: #2B303B;
     margin: 0 !important;
+    padding: 0 !important;
     width: 100% !important;
     height: 100% !important;
     top: 0;
@@ -30,164 +33,106 @@ body.zen-mode-editor #reply {
     left: 0;
     right: 0;
 }
+body.zen-mode form.new_reply {
+    height: calc(100% - 40px) !important;    
+}
 
-body.zen-mode-editor #reply.form .editor-toolbar {
+body.zen-mode .off-zen-mode,
+body.zen-mode form.zen-mode .alert,
+body.zen-mode form.zen-mode .helpblock,
+body.zen-mode form.zen-mode .help-inline {
+    display: none;    
+}
+
+body.zen-mode .editor-toolbar {
     max-width: 800px;
     margin: 10px auto;
 }
 
-body.zen-mode-editor .editor-toolbar .pills a {
+body.zen-mode .editor-toolbar .pills a {
     border: none;
     font-size: 18px;
     color: #C0C5CE;
 }
 
-body.zen-mode-editor .editor-toolbar .pills .active a {
+body.zen-mode .editor-toolbar .pills .active a {
     color: #2B303B;
 }
 
-body.zen-mode-editor .editor-toolbar .icons .small_image,
-body.zen-mode-editor .editor-toolbar .icons .small_code {
+body.zen-mode .editor-toolbar .icons .small_image,
+body.zen-mode .editor-toolbar .icons .small_code {
     width: 18px;
     height: 18px;
     background-size: 18px 270px;
 }
 
-body.zen-mode-editor .editor-toolbar .icons .small_code {
+body.zen-mode .editor-toolbar .icons .small_code {
     background-position: 0 -72px;
 }
 
-body.zen-mode-editor .editor-toolbar .icons .small_image {
+body.zen-mode .editor-toolbar .icons .small_image {
     background-position: 0 -162px;
 }
 
-body.zen-mode-editor .editor-toolbar .icons .loading {
+body.zen-mode .editor-toolbar .icons .loading {
     vertical-align: top;
     font-size: 14px;
 }
 
-body.zen-mode-editor .editor-toolbar .dropdown-menu {
+body.zen-mode .editor-toolbar .dropdown-menu {
     background-color: #333946;
     color: #AAAAAA;
 }
 
-body.zen-mode-editor .editor-toolbar .dropdown-menu a,
-body.zen-mode-editor .editor-toolbar .dropdown-menu i {
+body.zen-mode .editor-toolbar .dropdown-menu a,
+body.zen-mode .editor-toolbar .dropdown-menu i {
     color: #AAAAAA;
 }
 
-body.zen-mode-editor #reply {
+body.zen-mode form.zen-mode .control-group.edit-tools + .control-group {
+    height: calc(100% - 100px) !important;
     margin: 0 !important;
-    padding: 0 !important;
 }
 
-body.zen-mode-editor #reply form {
-    height: calc(100% - 40px);
-    overflow: hidden;
-}
-
-body.zen-mode-editor #reply.form textarea,
-body.zen-mode-editor #reply.form #preview {
-    background-color: #2B303B;
+body.zen-mode form.zen-mode textarea,
+body.zen-mode form.zen-mode #preview {
+    max-width: 800px !important;
+    height: 100% !important;
     border: 0 !important;
-    display: block;
-    min-width: 800px !important;
-    margin: 0px auto;
-    height: calc(100% - 60px) !important;
+    margin: 0 auto !important;
+    padding: 0 10px !important;
+    background-image: url(http://static.zhihu.com/static/img/editor/shadow.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: #2B303B;
     font-size: 24px;
     line-height: 1.5;
     vertical-align: middle;
     resize: none;
     color: #525353;
 }
-
-body.zen-mode-editor #reply.form textarea {
-    background-image: url(http://static.zhihu.com/static/img/editor/shadow.png);
-    background-repeat: no-repeat;
-    background-position: center top;
-}
-
-body.zen-mode-editor .markdown-body a:link,
-body.zen-mode-editor .markdown-body a:visited {
-    color: #6a6b6b !important;
-    text-decoration: underline !important;
-}
-
-body.zen-mode-editor .markdown-body a:hover {
-    color: #989999 !important;
-    text-decoration: underline !important;
-}
-
-body.zen-mode-editor .markdown-body img {
-    max-width: 90% !important;
-    margin: 0 auto;
+body.zen-mode form.zen-mode textarea {
     display: block;
 }
-
-body.zen-mode-editor .markdown-body h4 {
-    font-size: 1.1em;
-    border-bottom: 2px solid #333946;
-    padding-bottom: 10px;
-}
-
-body.zen-mode-editor .markdown-body p {
-    font-size: 1em;
-    line-height: 1.5;
-}
-
-body.zen-mode-editor .markdown-body ul li,
-body.zen-mode-editor .markdown-body ol li {
-    font-size: 1em;
-    line-height: 1.2;
-    color: #525353;
-}
-
-body.zen-mode-editor .markdown-body strong {
-    color: #525353;
-}
-
-body.zen-mode-editor .markdown-body code {
-    font-size: 0.9em !important;
-    background-color: #333946 !important;
-    color: #525353 !important;
-    line-height: 1.3;
-}
-
-body.zen-mode-editor .markdown-body pre,
-body.zen-mode-editor .markdown-body blockquote {
-    margin: 20px 0 30px 0 !important;
-    border: none;
-    background-color: #333946 !important;
-    padding: 5px 10px !important;
-    color: #525353 !important;
-}
-
-body.zen-mode-editor .markdown-body pre {
-    margin: 20px 0 20px 0 !important;
-    font-size: 0.8em !important;
-    line-height: 1.3;
-}
-
-body.zen-mode-editor .markdown-body blockquote {
-    font-size: 1em !important;
-    line-height: 1.5;
-}
-
-
-body.zen-mode-editor #reply.form textarea:focus {
+body.zen-mode form.zen-mode textarea:focus {
     border-color: transparent;
     box-shadow: none;
     outline: 0;
 }
 
-body.zen-mode-editor #reply .submit-buttons {
-    position: static;
+body.zen-mode form.zen-mode .submit-buttons,
+body.zen-mode form.zen-mode .control-group:last-of-type {
+    position: static !important;
     text-align: center;
     height: 50px;
     line-height: 50px;
 }
 
-body.zen-mode-editor #reply .submit-buttons .btn-primary {
+body.zen-mode form.zen-mode .btn-danger {
+    display: none;
+}
+
+body.zen-mode form.zen-mode .btn-primary {
     background: none !important;
     box-shadow: none;
     text-shadow: none;
@@ -195,7 +140,7 @@ body.zen-mode-editor #reply .submit-buttons .btn-primary {
     border: 1px solid #525353;
 }
 
-body.zen-mode-editor #reply .submit-buttons .btn-primary:hover {
+body.zen-mode form.zen-mode .btn-primary:hover {
     background-color: #333946 !important;
     box-shadow: none;
     text-shadow: none;
@@ -203,69 +148,89 @@ body.zen-mode-editor #reply .submit-buttons .btn-primary:hover {
     border: 1px solid #525353;
 }
 
-body.zen-mode-editor #reply .submit-buttons .help-inline {
-    display: none;    
+
+body.zen-mode form.new_reply textarea,
+body.zen-mode form.new_reply #preview {
+    height: calc(100% - 60px) !important;
 }
 
-body.zen-mode-editor #reply .helpblock {
-    display: none;
+body.zen-mode form.edit_reply,
+body.zen-mode form.edit_topic {
+    height: 100% !important;
 }
 
-
-.well.rcc-popover {
-    position: absolute;;
-    z-index: 2147483647;
-    background: #333333;
-    color: #eaeaea;
-    min-width: 200px;
-    max-width: 300px;
-    padding: 3px 6px;
+body.zen-mode form.edit_reply .control-group:nth-last-of-type(2),
+body.zen-mode form.new_reply  .control-group:nth-last-of-type(2),
+body.zen-mode form.edit_topic .control-group:nth-last-of-type(2) {
+    height: calc(100% - 100px);
+    overflow: hidden;
     margin: 0;
 }
 
-.well.rcc-popover ul {
-    margin: 5px 0 0 0;
+/* Markdown Preview */
+
+body.zen-mode .markdown-body a:link,
+body.zen-mode .markdown-body a:visited {
+    color: #6a6b6b !important;
+    text-decoration: underline !important;
 }
 
-.rcc-btn {
-    opacity: 0.4;
+body.zen-mode .markdown-body a:hover {
+    color: #989999 !important;
+    text-decoration: underline !important;
 }
 
-.icon-fullscreen {
-    background-position: -456px -144px !important;
+body.zen-mode .markdown-body img {
+    max-width: 90% !important;
+    margin: 0 auto;
+    display: block;
 }
 
-.box-fullscreen {
-    position: fixed !important;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    z-index: 1000;
-    overflow: hidden;
+body.zen-mode .markdown-body h4 {
+    font-size: 1.1em;
+    border-bottom: 2px solid #333946;
+    padding-bottom: 10px;
 }
 
-.box-fullscreen .submit_buttons,
-.box-fullscreen .helpblock,
-.box-fullscreen form .control-group:last-child {
-    display: none;
+body.zen-mode .markdown-body p {
+    font-size: 1em;
+    line-height: 1.5;
 }
 
-.box-fullscreen .topic_editor,
-.box-fullscreen #preview {
-    height: auto !important;
-    width: auto !important;
-    position: absolute;
-    right: 5px;
-    left: 5px;
-    bottom: 5px;
-    top: 35px;
-    font-size: 2em;
-    line-height: 1.5em;
+body.zen-mode .markdown-body ul li,
+body.zen-mode .markdown-body ol li {
+    font-size: 1em;
+    line-height: 1.2;
+    color: #525353;
 }
 
-.box-fullscreen .editor_toolbar {
-    width: auto !important;
+body.zen-mode .markdown-body strong {
+    color: #525353;
+}
+
+body.zen-mode .markdown-body code {
+    font-size: 0.9em !important;
+    background-color: #333946 !important;
+    color: #525353 !important;
+    line-height: 1.3;
+}
+
+body.zen-mode .markdown-body pre,
+body.zen-mode .markdown-body blockquote {
+    margin: 20px 0 30px 0 !important;
+    border: none;
+    background-color: #333946 !important;
+    padding: 5px 10px !important;
+    color: #525353 !important;
+}
+
+body.zen-mode .markdown-body pre {
+    margin: 20px 0 20px 0 !important;
+    font-size: 0.8em !important;
+    line-height: 1.3;
+}
+
+body.zen-mode .markdown-body blockquote {
+    font-size: 1em !important;
+    line-height: 1.5;
 }

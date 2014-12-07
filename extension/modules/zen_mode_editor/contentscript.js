@@ -2,7 +2,7 @@
   log('Module actived: zen_mode_editor');
 
   function toggle_zen_mode() {
-    $('body').toggleClass('zen-mode-editor');
+    $('body').toggleClass('zen-mode');
     $('#reply textarea').focus();
   }
 
@@ -11,6 +11,13 @@
     $('.editor-toolbar .pills').append(html);
 
     $('[data-toggle=zen-mode]').on('click', toggle_zen_mode);
+
+    $('form.new_reply').addClass('zen-mode');
+    $('form.edit_reply').addClass('zen-mode');
+    $('form.new_topic').addClass('zen-mode');
+    $('form.edit_topic').addClass('zen-mode');
+
+    $('#topic_title').parents('.control-group').addClass('off-zen-mode');
   }
 
   function initialize() {
