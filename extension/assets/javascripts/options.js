@@ -10,7 +10,7 @@ function show_alert(message) {
 
 function save_options() {
   var options = {};
-  options['fetch_duration'] = $('[name=fetch_duration]').val();
+  options['fetch_duration'] = parseInt($('[name=fetch_duration]').val());
   options['actived_modules'] = _.map($('[name=actived_modules]:checked'), 'value');
   log('Saving options:', options);
   localStorage['options'] = JSON.stringify(options);

@@ -1,3 +1,5 @@
+var PAT_NOTIFY = /id=\"user_notifications_count\"><span[^>].*>(.*?)<\/span><\/a>/;
+
 function load_modules_handler(request, sender, response) {
   var options = getOptions();
   
@@ -23,7 +25,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.create({ url: 'https://ruby-china.org/notifications' }); 
     localStorage['unread_notification_count'] = '';
   } else {
-    chrome.tabs.create({ url: 'https://ruby-china.org/' }); 
+    chrome.tabs.create({ url: 'https://ruby-china.org/topics' }); 
   }
 
   updateUnreadCount();
@@ -36,7 +38,7 @@ function updateUnreadCount() {
 function checkNewNotifications() {
   log('Checking ruby china notifications...');
   $.get('https://ruby-china.org/wiki/about', function(content) {
-    var unread_count = parseInt($(content).find("#user_notifications_count .badge").text());
+    var unread_count = parseInt(PAT_NOTIFY.test(content) && RegExp.$1 || 0);
     log('Fetched', unread_count, 'notifications');
     localStorage['unread_notification_count'] = unread_count || '';
     updateUnreadCount();
