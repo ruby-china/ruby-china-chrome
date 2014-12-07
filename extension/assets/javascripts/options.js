@@ -15,6 +15,8 @@ function save_options() {
   log('Saving options:', options);
   localStorage['options'] = JSON.stringify(options);
 
+  chrome.runtime.sendMessage({ type: 'update_fetch_duration' });
+
   show_alert('设置已保存');
 }
 

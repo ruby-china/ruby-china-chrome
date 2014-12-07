@@ -6,9 +6,17 @@ function load_modules_handler(request, sender, response) {
   });
 }
 
-register_message_dispatcher({
-  load_modules: load_modules_handler
-});
+function createNotificationAlarms() {
+  var options = getOptions();
+  var fetch_duration = options.fetch_duration;
+
+  chrome.alarms.get('notifications', function(alarm) {
+    if (!alarm || alarm.periodInMinutes != options.fetch_duration) {
+      chrome.alarms.create('notifications', { periodInMinutes: fetch_duration });
+      log('Alarm notifications created with period in', fetch_duration, 'minutes.');
+    }
+  });
+}
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   if (localStorage['unread_notification_count']) {
@@ -26,39 +34,32 @@ function updateUnreadCount() {
 }
 
 function checkNewNotifications() {
-  console.log('Checking ruby china notifications...');
+  log('Checking ruby china notifications...');
   $.get('https://ruby-china.org/wiki/about', function(content) {
     var unread_count = parseInt($(content).find("#user_notifications_count .badge").text());
-    console.log('Fetched ' + unread_count + ' notifications');
+    log('Fetched', unread_count, 'notifications');
     localStorage['unread_notification_count'] = unread_count || '';
     updateUnreadCount();
   });
 }
 
-function createNotificationAlarms() {
-  // 默认的通知读取间隔为3分钟
-  chrome.storage.sync.get({ 'option.fetch_duration': 3 }, function(items) {
-    chrome.alarms.create('notifications', { periodInMinutes: items['option.fetch_duration'] });
-    console.log('Alarm notifications created with period in ' + items['option.fetch_duration'] + ' minutes.');
-  });
-}
-
-function initialization() {
+// Initialize
+(function() {
+  // Init notifications
   createNotificationAlarms();
-  // 启动后立即检测
   checkNewNotifications();
-}
 
-// Event Bindings
-chrome.runtime.onStartup.addListener(createNotificationAlarms);
-chrome.runtime.onInstalled.addListener(createNotificationAlarms);
-chrome.alarms.onAlarm.addListener(function(alarmInfo) {
-  if (alarmInfo.name === 'notifications') {
-    checkNewNotifications();
-  }
-});
-chrome.storage.onChanged.addListener(function(changes) {
-  if ('option.fetch_duration' in changes) {
-    createNotificationAlarms();
-  }
-});
+  chrome.runtime.onStartup.addListener(createNotificationAlarms);
+  chrome.runtime.onInstalled.addListener(createNotificationAlarms);
+  chrome.alarms.onAlarm.addListener(function(alarmInfo) {
+    if (alarmInfo.name == 'notifications') {
+      checkNewNotifications();
+    }
+  });
+
+  // Init notifications
+  register_message_dispatcher({
+    load_modules: load_modules_handler,
+    update_fetch_duration: createNotificationAlarms
+  });
+})();
