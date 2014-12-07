@@ -1,6 +1,6 @@
 a[data-toggle=zen-mode]:before {
     color: #4A8BF5;
-    content: '-> 进入全屏模式';
+    content: '进入全屏模式 »';
 }
 
 body.zen-mode-editor {
@@ -9,11 +9,12 @@ body.zen-mode-editor {
 
 body.zen-mode-editor a[data-toggle=zen-mode]:before {
     color: #4A8BF5;
-    content: '<- 退出全屏模式';
+    content: '« 退出全屏模式';
 }
 
 body.zen-mode-editor #main {
     position: absolute;
+    overflow: hidden;
 }
 
 body.zen-mode-editor #reply {
@@ -32,7 +33,7 @@ body.zen-mode-editor #reply {
 
 body.zen-mode-editor #reply.form .editor-toolbar {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 body.zen-mode-editor .editor-toolbar .pills a {
@@ -45,9 +46,44 @@ body.zen-mode-editor .editor-toolbar .pills .active a {
     color: #2B303B;
 }
 
+body.zen-mode-editor .editor-toolbar .icons .small_image,
+body.zen-mode-editor .editor-toolbar .icons .small_code {
+    width: 18px;
+    height: 18px;
+    background-size: 18px 270px;
+}
+
+body.zen-mode-editor .editor-toolbar .icons .small_code {
+    background-position: 0 -72px;
+}
+
+body.zen-mode-editor .editor-toolbar .icons .small_image {
+    background-position: 0 -162px;
+}
+
+body.zen-mode-editor .editor-toolbar .icons .loading {
+    vertical-align: top;
+    font-size: 14px;
+}
+
+body.zen-mode-editor .editor-toolbar .dropdown-menu {
+    background-color: #333946;
+    color: #AAAAAA;
+}
+
+body.zen-mode-editor .editor-toolbar .dropdown-menu a,
+body.zen-mode-editor .editor-toolbar .dropdown-menu i {
+    color: #AAAAAA;
+}
+
+body.zen-mode-editor #reply {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 body.zen-mode-editor #reply form {
-    height: 80%;
-    overflow: auto;
+    height: calc(100% - 40px);
+    overflow: hidden;
 }
 
 body.zen-mode-editor #reply.form textarea,
@@ -56,8 +92,8 @@ body.zen-mode-editor #reply.form #preview {
     border: 0 !important;
     display: block;
     min-width: 800px !important;
-    margin: 30px auto;
-    height: 80% !important;
+    margin: 0px auto;
+    height: calc(100% - 60px) !important;
     font-size: 24px;
     line-height: 1.5;
     vertical-align: middle;
@@ -65,11 +101,36 @@ body.zen-mode-editor #reply.form #preview {
     color: #525353;
 }
 
-body.zen-mode-editor #reply.form #preview h4 {
-    font-size: 1.1em;
+body.zen-mode-editor #reply.form textarea {
+    background-image: url(http://static.zhihu.com/static/img/editor/shadow.png);
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
-body.zen-mode-editor #reply.form #preview p {
+body.zen-mode-editor .markdown-body a:link,
+body.zen-mode-editor .markdown-body a:visited {
+    color: #6a6b6b !important;
+    text-decoration: underline !important;
+}
+
+body.zen-mode-editor .markdown-body a:hover {
+    color: #989999 !important;
+    text-decoration: underline !important;
+}
+
+body.zen-mode-editor .markdown-body img {
+    max-width: 90% !important;
+    margin: 0 auto;
+    display: block;
+}
+
+body.zen-mode-editor .markdown-body h4 {
+    font-size: 1.1em;
+    border-bottom: 2px solid #333946;
+    padding-bottom: 10px;
+}
+
+body.zen-mode-editor .markdown-body p {
     font-size: 1em;
     line-height: 1.5;
 }
@@ -81,6 +142,38 @@ body.zen-mode-editor .markdown-body ol li {
     color: #525353;
 }
 
+body.zen-mode-editor .markdown-body strong {
+    color: #525353;
+}
+
+body.zen-mode-editor .markdown-body code {
+    font-size: 0.9em !important;
+    background-color: #333946 !important;
+    color: #525353 !important;
+    line-height: 1.3;
+}
+
+body.zen-mode-editor .markdown-body pre,
+body.zen-mode-editor .markdown-body blockquote {
+    margin: 20px 0 30px 0 !important;
+    border: none;
+    background-color: #333946 !important;
+    padding: 5px 10px !important;
+    color: #525353 !important;
+}
+
+body.zen-mode-editor .markdown-body pre {
+    margin: 20px 0 20px 0 !important;
+    font-size: 0.8em !important;
+    line-height: 1.3;
+}
+
+body.zen-mode-editor .markdown-body blockquote {
+    font-size: 1em !important;
+    line-height: 1.5;
+}
+
+
 body.zen-mode-editor #reply.form textarea:focus {
     border-color: transparent;
     box-shadow: none;
@@ -90,6 +183,24 @@ body.zen-mode-editor #reply.form textarea:focus {
 body.zen-mode-editor #reply .submit-buttons {
     position: static;
     text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+body.zen-mode-editor #reply .submit-buttons .btn-primary {
+    background: none !important;
+    box-shadow: none;
+    text-shadow: none;
+    color: #989999;
+    border: 1px solid #525353;
+}
+
+body.zen-mode-editor #reply .submit-buttons .btn-primary:hover {
+    background-color: #333946 !important;
+    box-shadow: none;
+    text-shadow: none;
+    color: #989999;
+    border: 1px solid #525353;
 }
 
 body.zen-mode-editor #reply .submit-buttons .help-inline {

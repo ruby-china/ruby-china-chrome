@@ -10,62 +10,17 @@
     var html = '<li><a href="javascript:;" data-toggle="zen-mode"></a></li>';
     $('.editor-toolbar .pills').append(html);
 
-    $('[data-toggle]').on('click', toggle_zen_mode);
+    $('[data-toggle=zen-mode]').on('click', toggle_zen_mode);
   }
 
   function initialize() {
     extend_editor();
-    toggle_zen_mode();
   }
 
   $(document).on('page:load', initialize);
   $(document).ready(initialize);
 })(jQuery);
 
-
-var TPLS = {
-  BTN: '<a href="javascript:;" class="rcc-btn #{1} #{3}" title="#{2}"><i class="icon icon-#{1}"></i></a>'
-};
-
-function addToolbarButton(name, title, hide) {
-  $('.editor_toolbar .icons').append(fmt(TPLS.BTN, name, title, hide));
-}
-
-function toggleTwipsy($box, flag) {
-  if (flag) {
-    $box.find('[rel=twipsy]').attr('data-original-title', function() { return $(this).attr('data-title'); });
-  } else {
-    $box.find('[rel=twipsy]').attr('data-title', function() { return $(this).attr('data-original-title'); }).attr('data-original-title', null);
-  }
-}
-
-function extendToolbar() {
-  log('Loading extra toolbar buttons...');
-  addToolbarButton('fullscreen', '全屏编辑', '');
-  addToolbarButton('resize-small', '退出全屏', 'hide');
-
-  $('.fullscreen').on('click', function(evt) {
-    $box = $(this).parents('.box');
-    $box.addClass('box-fullscreen').find('.control-group:first').hide();
-    $(this).hide();
-    $box.find('.resize-small').show();
-    toggleTwipsy($box, false);
-    $('body').css('overflow', 'hidden');
-    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-    return false;
-  }); 
-
-  $('.resize-small').on('click', function(evt) {
-    $box = $(this).parents('.box');
-    $box.removeClass('box-fullscreen').find('.control-group:first').show();
-    $(this).hide();
-    $box.find('.fullscreen').show();
-    toggleTwipsy($box, true);
-    $('body').css('overflow', 'auto');
-    document.webkitExitFullscreen();
-    return false;
-  }); 
-}
 /*
 $(function() {
   var nameTimer = null,
